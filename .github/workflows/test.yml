@@ -6,6 +6,15 @@ env:
   LAZARUS_VERSION: "2.0.10"
 
 jobs:
+  fetch-lazarus:
+    name: Fetch Lazarus Sources
+    runs-on: self-hosted
+
+    steps:
+      - name: Download Lazarus
+        run:  scripts/setup_lazarus.sh
+
+
   build-artifact:
     name: Building the artifact
     runs-on: self-hosted
@@ -15,9 +24,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Lazarus
-        run:  scripts/setup_lazarus.sh
 
       - name: Compile Linux
         run:  mvn compile -Plinux64
