@@ -2,6 +2,9 @@ name: Build Lazarus Artifact
 
 on: push
 
+env:
+  LAZARUS_VERSION: "2.0.10"
+
 jobs:
   build-artifact:
     name: Building the artifact
