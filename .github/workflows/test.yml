@@ -13,5 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Setup Lazarus
+        run:  scripts/setup_lazarus.sh
+
       - name: Compile Linux
         run:  mvn compile -Plinux64
