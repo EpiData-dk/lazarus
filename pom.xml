@@ -4,17 +4,54 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>dk.epidata.parent</groupId>
-        <artifactId>epidata-parent</artifactId>
-        <version>[1.0,1.1)</version>
-    </parent>
-
     <groupId>dk.epidata.lazarus</groupId>
     <artifactId>lazarus</artifactId>
     <version>2.0.10</version>
     <packaging>pom</packaging>
-
+    
+    <profiles>
+        <profile>
+            <id>linux32</id>
+            <properties>
+                <fpc.arch>i386</fpc.arch>
+                <fpc.os>linux</fpc.os>
+                <lcl.platform>gtk2</lcl.platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>linux64</id>
+            <properties>
+                <fpc.arch>x86_64</fpc.arch>
+                <fpc.os>linux</fpc.os>
+                <lcl.platform>gtk2</lcl.platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>win32</id>
+            <properties>
+                <fpc.arch>i386</fpc.arch>
+                <fpc.os>win32</fpc.os>
+                <lcl.platform>win32</lcl.platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>win64</id>
+            <properties>
+                <fpc.arch>x86_64</fpc.arch>
+                <fpc.os>win64</fpc.os>
+                <lcl.platform>win32</lcl.platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>darwin64</id>
+            <properties>
+                <fpc.arch>x86_64</fpc.arch>
+                <fpc.os>darwin</fpc.os>
+                <lcl.platform>cocoa</lcl.platform>
+            </properties>
+        </profile>
+    </profiles>
+    
     <build>
         <plugins>
             <plugin>
