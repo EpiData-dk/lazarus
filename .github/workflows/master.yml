@@ -1,12 +1,15 @@
 name: Build Lazarus Artifact
 
-on: push
-
+on: 
+  push:
+    branches: 
+      - main
+      
 env:
   LAZARUS_VERSION: "2.0.10"
 
 jobs:
-  scm:
+  setup:
     name: Checkout Source
     runs-on: self-hosted
     
@@ -14,17 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Resolve Parent Range
-        run: |
-          mvn versions:resolve-ranges -f pom.xml
-          mvn versions:resolve-ranges -f deploy.pom.xml
-
-  fetch:
-    name: Fetch Lazarus Sources
-    runs-on: self-hosted
-    needs: scm
-
-    steps:
       - name: Download Lazarus
         run:  scripts/setup_lazarus.sh
 
@@ -36,7 +28,7 @@ jobs:
       image: epidata/fpcbuild:3.2.0-12
       volumes:
         - /etc/maven/settings.xml:/etc/maven/settings.xml
-    needs: [scm, fetch]
+    needs: setup
 
     steps:
       - name: Compile Linux
@@ -47,3 +39,15 @@ jobs:
 
       - name: Compile Mac
         run:  mvn compile -Pdarwin64
+
+  deploy:
+    name: Deploy Artifact
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+      - name: Deploy
+      - run: |
+          mvn versions:set -DnewVersion=${LAZARUS_VERSION} -f deploy.pom.xml
+          mvn deploy -f deploy.pom.xml
+          scripts/remove_lazarus.sh
