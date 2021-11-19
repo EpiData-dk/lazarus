@@ -35,7 +35,7 @@ jobs:
     container:
       image: epidata/fpcbuild:3.2.0-12
       volumes:
-        - /etc/maven/settings.xml:.m2/settings.xml
+        - /etc/maven/settings.xml:/etc/maven/settings.xml
     needs: [scm, fetch]
 
     steps:
