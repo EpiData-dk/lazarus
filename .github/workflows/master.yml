@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Deploy
-      - run: |
+        run: |
           mvn versions:set -DnewVersion=${LAZARUS_VERSION} -f deploy.pom.xml
           mvn deploy -f deploy.pom.xml
           scripts/remove_lazarus.sh
