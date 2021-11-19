@@ -41,3 +41,9 @@ jobs:
     steps:
       - name: Compile Linux
         run:  mvn compile -Plinux64
+
+      - name: Compile Windows
+        run:  mvn compile -Pwin64
+
+      - name: Compile Mac
+        run:  mvn compile -Pmac64
