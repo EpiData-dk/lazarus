@@ -1,0 +1,41 @@
+name: Build Lazarus Artifact
+
+on: 
+  pull_request:
+    branches: 
+      - master
+      
+env:
+  LAZARUS_VERSION: "2.0.10"
+
+jobs:
+  setup:
+    name: Checkout Source
+    runs-on: self-hosted
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download Lazarus
+        run:  scripts/setup_lazarus.sh
+
+
+  build:
+    name: Building the artifact
+    runs-on: self-hosted
+    container:
+      image: epidata/fpcbuild:3.2.0-12
+      volumes:
+        - /etc/maven/settings.xml:/etc/maven/settings.xml
+    needs: setup
+
+    steps:
+      - name: Compile Linux
+        run:  mvn compile -Plinux64
+
+      - name: Compile Windows
+        run:  mvn compile -Pwin64
+
+      - name: Compile Mac
+        run:  mvn compile -Pdarwin64
