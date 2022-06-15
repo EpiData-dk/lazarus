@@ -134,5 +134,15 @@
                 <exclude>*/*/*.compiled</exclude>
             </excludes>
         </fileSet>
+        <fileSet>
+            <directory>${basedir}/lazarus/components/tachart/lib/</directory>
+            <outputDirectory>tachart/</outputDirectory>
+            <includes>
+                <include>*/*/*</include>
+            </includes>
+            <excludes>
+                <exclude>*/*/*.compiled</exclude>
+            </excludes>
+        </fileSet>
     </fileSets>
 </assembly>
