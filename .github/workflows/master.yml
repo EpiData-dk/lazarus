@@ -13,7 +13,7 @@ jobs:
     name: Compile the source
     runs-on: ubuntu-latest
     container:
-      image: epidata/fpcbuild:3.2.0-13
+      image: epidata/fpcbuild:3.2.2
     
     steps:
       - name: Checkout code
@@ -58,6 +58,6 @@ jobs:
 
       - name: Deploy
         run: |
-          mvn versions:set -DnewVersion=${LAZARUS_VERSION} -f deploy.pom.xml
+          mvn versions:set -DnewVersion=${LAZARUS_VERSION}-3.2.2 -f deploy.pom.xml
           mvn deploy -f deploy.pom.xml
           scripts/remove_lazarus.sh
