@@ -6,7 +6,7 @@ on:
       - master
       
 env:
-  LAZARUS_VERSION: "2.0.10"
+  LAZARUS_VERSION: "3.2"
 
 jobs:
   setup:
@@ -57,6 +57,4 @@ jobs:
         run:  mvn compile -Pdarwin64
 
       - name: Deploy
-        run: |
-          mvn deploy -f deploy.pom.xml
-          scripts/remove_lazarus.sh
+        run:  mvn deploy -f deploy.pom.xml
