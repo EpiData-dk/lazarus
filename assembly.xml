@@ -154,5 +154,15 @@
                 <exclude>*/*/*.compiled</exclude>
             </excludes>
         </fileSet>
+        <fileSet>
+            <directory>${basedir}/lazarus/components/freetype/lib/</directory>
+            <outputDirectory>freetype/</outputDirectory>
+            <includes>
+                <include>*/*</include>
+            </includes>
+            <excludes>
+                <exclude>*/*.compiled</exclude>
+            </excludes>
+        </fileSet>
     </fileSets>
 </assembly>
