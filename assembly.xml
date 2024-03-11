@@ -115,6 +115,16 @@
             </excludes>
         </fileSet>
         <fileSet>
+            <directory>${basedir}/lazarus/components/buildintf/units/</directory>
+            <outputDirectory>buildintf/</outputDirectory>
+            <includes>
+                <include>*/*</include>
+            </includes>
+            <excludes>
+                <exclude>*/*.compiled</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
             <directory>${basedir}/lazarus/components/synedit/units/</directory>
             <outputDirectory>synedit/</outputDirectory>
             <includes>
