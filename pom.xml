@@ -7,7 +7,7 @@
     <parent>
         <groupId>dk.epidata.parent</groupId>
         <artifactId>epidata-parent</artifactId>
-        <version>1.0.3</version>
+        <version>2.0.1</version>
     </parent>
 
     <groupId>dk.epidata.lazarus</groupId>
@@ -20,10 +20,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>compile-source</id>
+                        <id>compile-lazarus</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
@@ -36,6 +35,14 @@
                                 <argument>${lcl.platform}</argument>
                             </arguments>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-units-dir</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>compile-sources</id>
+                        <phase>none</phase>
                     </execution>
                 </executions>
             </plugin>
